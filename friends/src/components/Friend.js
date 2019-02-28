@@ -1,6 +1,5 @@
 import React from 'react';
 
-
     const Friend = ({ name, age, email}) => {
         return (
             <div>
