@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
 import { Route } from 'react-router-dom';
-
+import AddFriendForm from './components/AddFriendForm';
 
 class App extends Component {
   constructor() {
@@ -13,6 +13,11 @@ class App extends Component {
       error: ''
     }
   }
+  addFriend = (e, friend) => {
+    axios.post('http://localhost:5000/friends', friend)
+      .then(res => { console.log(res); })
+      .catch(err => { console.log(err) });
+}
 
   componentDidMount () {
     axios

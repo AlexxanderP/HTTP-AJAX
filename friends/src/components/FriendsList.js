@@ -1,6 +1,8 @@
 import React from 'react';
 import Friend from './Friend';
-import Form from 'react';
+// import Form from 'react';
+import AddFriendForm from './AddFriendForm';
+
 
 const FriendsList = ({friends}) => {
     return (
