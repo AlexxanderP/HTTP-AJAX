@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
-
+import { Route } from 'react-router-dom';
+import AddFriendForm from './components/AddFriendForm';
 
 class App extends Component {
   constructor() {
@@ -12,6 +13,11 @@ class App extends Component {
       error: ''
     }
   }
+  addFriend = (e, friend) => {
+    axios.post('http://localhost:5000/friends', friend)
+      .then(res => { console.log(res); })
+      .catch(err => { console.log(err) });
+}
 
   componentDidMount () {
     axios
@@ -26,8 +32,18 @@ class App extends Component {
   render() {
     return (
       <>
-        <FriendsList
-        friends={this.state.friends} />
+        <Route exact path='/' render={
+          props => <FriendsList {...props} friends={this.state.friends}
+        /> }
+      />
+        <Route exact path='/addfriend' render={Props => (
+          <AddFriendForm {...Props} 
+          newFriend={this.state.newFriend}
+          changeHandler={this.changeHandler}
+          addFriend={this.state.addFriend}
+          />
+        )}
+        />
       </>
     );
   }
